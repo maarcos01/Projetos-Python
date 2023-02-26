@@ -1,8 +1,30 @@
 import PySimpleGUI as sg
+import re
+
+#POO para validar IP varias vezes durante meu codigo
+
+class IPValidator:
+    def __init__(self, ip):
+        self.ip = ip
+        self.ip_pattern = re.compile(r'^(\d{1,3}\.){3}\d{1,3}$')
+
+    def is_valid(self):
+        if not self.ip_pattern.match(self.ip):
+            return False
+        first_octet = int(self.ip.split('.')[0])
+        if first_octet >= 1 and first_octet <= 127:
+            return True
+        return False
+
+# ip = input('Digite o endereço IP: ')
+# validator = IPValidator(ip)
+# if validator.is_valid():
+#     print('Endereço IP de classe A válido')
+# else:
+#     print('Endereço IP inválido: não é um endereço de classe A')
 
 
 # Primeira janela, onde a pessoa vai colocar as informações necessarias parar falar com ela
-
 
 def janela_info():
     # Tema da janela
